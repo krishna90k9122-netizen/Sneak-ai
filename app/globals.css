@@ -1,0 +1,432 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  color-scheme: light;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  color-scheme: dark;
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    color-scheme: dark;
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    /* `clip` (not `hidden`) prevents horizontal overflow WITHOUT creating a
+       scroll container — `overflow: hidden` on an ancestor silently breaks
+       `position: sticky` for the navbar. */
+    overflow-x: clip;
+  }
+  body {
+    background-color: var(--sneak-bg);
+    color: var(--sneak-text);
+    overflow-x: clip;
+  }
+}
+
+/* ===== SneakAI custom theme variables ===== */
+:root {
+  --sneak-bg: #05070a;
+  --sneak-bg-2: #080b0f;
+  --sneak-bg-3: #0b0e13;
+  --sneak-surface: #101318;
+  --sneak-surface-2: #14181d;
+  --sneak-surface-3: #181c22;
+  --sneak-border: rgba(255, 255, 255, 0.1);
+  --sneak-border-strong: rgba(255, 255, 255, 0.16);
+  --sneak-text: #f3f5f7;
+  --sneak-text-2: #9ba2aa;
+  --sneak-text-3: #8a9199; /* ≥6:1 on --sneak-bg (was 4.1:1) */
+  --sneak-accent: #bcd7ea;
+
+  /* Brand accent — the ONLY chromatic colour allowed on the site.
+     One ramp, so blue can never drift into five different hex values. */
+  --brand: #38bdf8;
+  --brand-strong: #0ea5e9;
+  --brand-deep: #0369a1;
+  --brand-soft: rgba(56, 189, 248, 0.14);
+  --brand-line: rgba(56, 189, 248, 0.28);
+  --brand-glow: rgba(56, 189, 248, 0.22);
+  /* Legacy alias, remapped to the controlled glow (was rgba(150,200,240,.35)) */
+  --sneak-glow: var(--brand-glow);
+
+  /* Single glass recipe (was 5 variants across 3 blur radii) */
+  --glass-bg: rgba(12, 16, 22, 0.72);
+  --glass-bg-strong: rgba(10, 14, 19, 0.86);
+  --glass-border: rgba(255, 255, 255, 0.09);
+  --glass-blur: 14px;
+}
+
+/* ===== Global layout ===== */
+html {
+  scroll-padding-top: 5.5rem; /* anchors clear the sticky navbar */
+  scroll-behavior: smooth;
+}
+
+/* ===== Page backgrounds =====
+   One neutral vertical ramp for the whole document. Previously hero, canvas,
+   features and outer each carried their own near-black, which produced
+   visible horizontal seams between sections. */
+.sneak-outer {
+  overflow-x: clip;
+  background: var(--sneak-bg);
+}
+
+.sneak-canvas {
+  background: linear-gradient(180deg, var(--sneak-bg-2) 0%, var(--sneak-bg) 45%, var(--sneak-bg) 100%);
+}
+
+/* ===== Glass card — single recipe ===== */
+.sneak-glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+
+/* Respect motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .sneak-btn-light,
+  .sneak-btn-glass {
+    transition: none;
+  }
+  .sneak-btn-light:hover,
+  .sneak-btn-glass:hover {
+    transform: none;
+  }
+}
+
+/* ===== Buttons ===== */
+.sneak-btn-light {
+  background: linear-gradient(180deg, #ffffff, #e9edf1);
+  color: #0a0c0f;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+.sneak-btn-light:hover {
+  filter: brightness(1.04);
+  box-shadow: 0 10px 30px -14px rgba(220, 235, 248, 0.55);
+  transform: translateY(-1px);
+}
+.sneak-btn-light:focus-visible {
+  outline: 2px solid rgba(188, 215, 234, 0.7);
+  outline-offset: 2px;
+}
+
+.sneak-btn-glass {
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  color: var(--sneak-text);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.sneak-btn-glass:hover {
+  border-color: var(--sneak-border-strong);
+  box-shadow: 0 10px 28px -16px rgba(0, 0, 0, 0.8);
+  transform: translateY(-1px);
+}
+.sneak-btn-glass:focus-visible {
+  outline: 2px solid rgba(188, 215, 234, 0.7);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sneak-btn-light,
+  .sneak-btn-glass {
+    transition: none;
+  }
+  .sneak-btn-light:hover,
+  .sneak-btn-glass:hover {
+    transform: none;
+  }
+}
+
+/* ===== Decorative ===== */
+.handwritten {
+  font-family: "Segoe Script", "Bradley Hand", cursive;
+  font-style: italic;
+}
+
+/* ===== Animations (only keyframes with live usages — see reduced-motion) ===== */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+@keyframes dash {
+  to { stroke-dashoffset: -1000; }
+}
+
+.anim-twinkle { animation: twinkle 3.5s ease-in-out infinite; }
+.anim-dash { stroke-dasharray: 6 8; animation: dash 30s linear infinite; }
+
+/* Respect motion preferences for all animations */
+@media (prefers-reduced-motion: reduce) {
+  /* Instant anchor jumps instead of a long smooth scroll */
+  html {
+    scroll-behavior: auto;
+  }
+  .anim-twinkle,
+  .anim-dash,
+  .laptop-3d {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .animate-pulse,
+  .animate-ping,
+  .animate-bounce,
+  .animate-spin,
+  .animate-pulse-slow,
+  .animate-ping-slow,
+  .animate-bounce-slow {
+    animation: none !important;
+  }
+}
+
+/* ===== Laptop product visual =====
+   The product render is a photographic asset (components/laptop-showcase.tsx),
+   so only the container and a subtle float remain. */
+@keyframes laptopFloat {
+  0%, 100% { transform: rotateX(6deg) rotateY(-12deg) rotateZ(0.5deg) translateY(0); }
+  50% { transform: rotateX(6deg) rotateY(-12deg) rotateZ(0.5deg) translateY(-6px); }
+}
+
+.laptop-stage {
+  perspective: 1400px;
+  perspective-origin: 50% 40%;
+}
+.laptop-3d {
+  transform-style: preserve-3d;
+  animation: laptopFloat 9s ease-in-out infinite;
+}
+
+/* ===== Premium design system (cinematic restraint) =====
+   One container, one display scale, one reveal. Everything else composes
+   from the existing sneak tokens above. */
+:root {
+  --display-tracking: -0.03em;
+  --section-pad: clamp(4.5rem, 8vw, 7.5rem);
+  --container: 1240px;
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sneak-container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+}
+
+/* Display headline — the only oversized type on the page */
+.sneak-display {
+  font-weight: 800;
+  letter-spacing: var(--display-tracking);
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+/* Eyebrow label — mono kickers above headlines */
+.sneak-eyebrow {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Hairline section divider */
+.sneak-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--sneak-border-strong), transparent);
+}
+
+/* Scroll reveal — applied via the Reveal component; purely progressive
+   enhancement (content is visible if JS or IO is unavailable). */
+.rv {
+  opacity: 0;
+  transform: translateY(26px);
+}
+.rv-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.8s var(--ease-premium), transform 0.8s var(--ease-premium);
+}
+@media (prefers-reduced-motion: reduce) {
+  .rv {
+    opacity: 1;
+    transform: none;
+  }
+  .rv-in {
+    transition: none;
+  }
+}
+
+::selection {
+  background: rgba(56, 189, 248, 0.28);
+  color: #ffffff;
+}
+
+/* Robot box below 1024px: the bust is cut flat at the frame bottom, so it
+   fades into the page instead of ending on a hard line. */
+.robot-inflow {
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 84%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0, #000 84%, transparent 100%);
+}
+
+/* ≥1024px the robot stage passes behind the stats row at some widths. A glass
+   panel (same language as the feature card) keeps the numbers legible. */
+@media (min-width: 1024px) {
+  .hero-stats {
+    padding: 0.9rem 1.25rem;
+    border: 1px solid var(--sneak-border);
+    border-radius: 1rem;
+    background: rgba(8, 11, 15, 0.62);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    width: fit-content;
+  }
+}
