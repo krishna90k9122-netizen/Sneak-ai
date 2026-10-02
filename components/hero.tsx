@@ -2,7 +2,8 @@
 
 import { useSyncExternalStore } from "react"
 import { RobotSequence } from "./robot-sequence"
-import { Play, EyeOff, Zap, Shield, TrendingUp } from "lucide-react"
+import { HeroStatusCard } from "./hero-status-card"
+import { Play } from "lucide-react"
 
 // The robot is mounted exactly once, in the place that suits the viewport:
 //  • ≥1024px: absolute stage behind the copy (full-bleed hero artwork)
@@ -187,7 +188,7 @@ export function Hero() {
         {/* Middle Main Content Row */}
         <div className="w-full flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 mt-auto mb-auto py-2">
           {/* Left Hero Content Column */}
-          <div className="w-full lg:max-w-[460px] flex flex-col items-start text-left pointer-events-none">
+          <div className="w-full lg:max-w-[480px] flex flex-col items-start text-left pointer-events-none">
             {/* Eyebrow */}
             <p className="sneak-eyebrow text-[12px] sm:text-[13px] tracking-[0.26em] text-[var(--sneak-text)] uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]">
               Invisible AI interview copilot
@@ -204,36 +205,31 @@ export function Hero() {
               Get real-time answers, smart suggestions, and confidence — without being noticed.
             </p>
 
-            {/* CTA Buttons — use the same button language as the rest of the site
-                (the previous cyan gradient + 28px glow was the only neon element) */}
-            <div className="mt-6 flex flex-wrap items-center gap-4 pointer-events-auto">
+            {/* CTA Buttons */}
+            <div className="mt-6 flex flex-wrap items-center gap-3.5 pointer-events-auto">
               <a
                 href="#pricing"
-                className="sneak-btn-light group inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-xs sm:text-[13px] font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sneak-accent)]/60"
+                className="sneak-btn-light group inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-xs sm:text-[13px] font-semibold shadow-[0_0_24px_rgba(0,229,255,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sneak-accent)]/60"
               >
-                <span>Start Free</span>
+                <span>Experience SneakAI</span>
                 <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
                   →
                 </span>
               </a>
 
-              <button
-                type="button"
-                onClick={() => {
-                  const el = document.getElementById("download")
-                  if (el) el.scrollIntoView({ behavior: "smooth" })
-                }}
-                className="sneak-btn-glass flex items-center gap-2.5 rounded-full px-5 py-2.5 text-xs sm:text-[13px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sneak-accent)]/60"
+              <a
+                href="#story"
+                className="sneak-btn-glass flex items-center gap-2.5 rounded-full px-5 py-2.5 text-xs sm:text-[13px] font-medium transition-all duration-300 hover:border-[var(--brand-line)] hover:bg-[rgba(7,11,24,0.95)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sneak-accent)]/60"
               >
                 <div className="flex h-5 w-5 items-center justify-center rounded-full border border-[var(--brand-line)] bg-[var(--brand-soft)]">
                   <Play className="h-2.5 w-2.5 fill-[var(--brand)] text-[var(--brand)] ml-0.5" />
                 </div>
-                <span>Watch Demo</span>
-              </button>
+                <span>Explore the Experience</span>
+              </a>
             </div>
 
             {/* Statistics Row */}
-            <div className="hero-stats mt-8 flex items-center gap-6 sm:gap-8 pt-5 border-t border-[var(--sneak-border)] w-full max-w-[400px]">
+            <div className="hero-stats mt-7 flex items-center gap-5 sm:gap-7 pt-4 border-t border-[var(--sneak-border)] w-full max-w-[440px]">
               <div>
                 <div className="text-xl sm:text-2xl font-bold font-mono text-[var(--sneak-text)] tracking-tight">
                   10K+
@@ -244,7 +240,7 @@ export function Hero() {
               <div className="h-8 w-[1px] bg-[var(--sneak-border)]" />
 
               <div>
-                <div className="text-xl sm:text-2xl font-bold font-mono text-[var(--sneak-text)] tracking-tight">
+                <div className="text-xl sm:text-2xl font-bold font-mono text-[var(--sneak-text)] tracking-tight text-[#00E5FF]">
                   95%
                 </div>
                 <div className="text-[11px] font-medium text-[var(--sneak-text-3)] mt-0.5">Success Rate</div>
@@ -261,66 +257,9 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right Side Compact AI Feature List */}
+          {/* Right Side: Floating AI Status Interface */}
           <div className="w-full lg:w-auto flex flex-col items-start lg:items-end pointer-events-none mt-6 lg:mt-0">
-            {/* The old `h-16 sm:h-20 lg:h-24 hidden lg:block` spacer that pushed
-                this card below the AI wordmark is gone: the wordmark now sits
-                above the whole content row, so the extra offset double-counted
-                and pushed the card out of alignment with the h1. */}
-
-            <div className="sneak-glass flex flex-col gap-3.5 p-4 sm:p-5 rounded-2xl shadow-[0_18px_40px_-24px_rgba(0,0,0,0.9)]">
-              {/* Feature 1: Undetectable */}
-              <div className="flex items-center gap-3 text-left">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[var(--brand-line)] bg-[var(--brand-soft)]">
-                  <EyeOff className="h-4 w-4 text-[var(--brand)]" />
-                </div>
-                <div>
-                  <span className="text-xs sm:text-[13px] font-semibold text-[var(--sneak-text)] tracking-wide">
-                    Undetectable
-                  </span>
-                  <p className="text-[11px] text-[var(--sneak-text-3)]">Zero screen or audio trace</p>
-                </div>
-              </div>
-
-              {/* Feature 2: Real-time AI */}
-              <div className="flex items-center gap-3 text-left">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[var(--brand-line)] bg-[var(--brand-soft)]">
-                  <Zap className="h-4 w-4 text-[var(--brand)]" />
-                </div>
-                <div>
-                  <span className="text-xs sm:text-[13px] font-semibold text-[var(--sneak-text)] tracking-wide">
-                    Real-time AI
-                  </span>
-                  <p className="text-[11px] text-[var(--sneak-text-3)]">&lt; 300ms lightning answers</p>
-                </div>
-              </div>
-
-              {/* Feature 3: Works Everywhere */}
-              <div className="flex items-center gap-3 text-left">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[var(--brand-line)] bg-[var(--brand-soft)]">
-                  <Shield className="h-4 w-4 text-[var(--brand)]" />
-                </div>
-                <div>
-                  <span className="text-xs sm:text-[13px] font-semibold text-[var(--sneak-text)] tracking-wide">
-                    Works Everywhere
-                  </span>
-                  <p className="text-[11px] text-[var(--sneak-text-3)]">Zoom, Meet, Teams &amp; Web</p>
-                </div>
-              </div>
-
-              {/* Feature 4: Boosts Confidence */}
-              <div className="flex items-center gap-3 text-left">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[var(--brand-line)] bg-[var(--brand-soft)]">
-                  <TrendingUp className="h-4 w-4 text-[var(--brand)]" />
-                </div>
-                <div>
-                  <span className="text-xs sm:text-[13px] font-semibold text-[var(--sneak-text)] tracking-wide">
-                    Boosts Confidence
-                  </span>
-                  <p className="text-[11px] text-[var(--sneak-text-3)]">Ace every interview question</p>
-                </div>
-              </div>
-            </div>
+            <HeroStatusCard />
           </div>
         </div>
 
@@ -336,12 +275,16 @@ export function Hero() {
             </span>
           </div>
 
-          {/* Center Scroll Indicator — text removed per design review */}
-          <div className="flex flex-col items-center gap-2 pointer-events-auto cursor-pointer pb-1">
+          {/* Center Scroll Indicator */}
+          <a
+            href="#story"
+            aria-label="Scroll to experience"
+            className="flex flex-col items-center gap-2 pointer-events-auto cursor-pointer pb-1 transition-opacity hover:opacity-80"
+          >
             <div className="flex h-7 w-4 justify-center rounded-full border border-white/25 p-1">
               <span className="h-1.5 w-1 rounded-full bg-[var(--brand)] animate-bounce" />
             </div>
-          </div>
+          </a>
 
           {/* Bottom-Right Corner Accent */}
           <div className="border-b-2 border-r-2 border-[var(--brand-line)] pr-3.5 pb-2 text-right">

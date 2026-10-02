@@ -5,13 +5,14 @@ import { Menu, X } from "lucide-react"
 import { Logo } from "./logo"
 
 const links = [
-  { label: "Home", href: "#home", id: "home", active: true },
+  { label: "Home", href: "#home", id: "home" },
+  { label: "Story", href: "#story", id: "story" },
+  { label: "Capabilities", href: "#capabilities", id: "capabilities" },
+  { label: "Invisible", href: "#invisible", id: "invisible" },
   { label: "Features", href: "#features", id: "features" },
   { label: "How It Works", href: "#download", id: "download" },
   { label: "Pricing", href: "#pricing", id: "pricing" },
 ]
-// NOTE: Testimonials/FAQ links were removed — those sections don't exist and
-// the links scrolled nowhere. Add them back only with real targets.
 
 const DESKTOP_BREAKPOINT = 1024
 

@@ -173,35 +173,40 @@
 
 /* ===== SneakAI custom theme variables ===== */
 :root {
-  --sneak-bg: #05070a;
-  --sneak-bg-2: #080b0f;
-  --sneak-bg-3: #0b0e13;
-  --sneak-surface: #101318;
-  --sneak-surface-2: #14181d;
-  --sneak-surface-3: #181c22;
-  --sneak-border: rgba(255, 255, 255, 0.1);
-  --sneak-border-strong: rgba(255, 255, 255, 0.16);
-  --sneak-text: #f3f5f7;
-  --sneak-text-2: #9ba2aa;
-  --sneak-text-3: #8a9199; /* ≥6:1 on --sneak-bg (was 4.1:1) */
-  --sneak-accent: #bcd7ea;
+  --sneak-bg: #03050c;
+  --sneak-bg-2: #070b18;
+  --sneak-bg-3: #0b1230;
+  --sneak-surface: #0a0f24;
+  --sneak-surface-2: #101738;
+  --sneak-surface-3: #16204d;
+  --sneak-border: rgba(140, 190, 255, 0.14);
+  --sneak-border-strong: rgba(140, 190, 255, 0.28);
+  --sneak-text: #f7faff;
+  --sneak-text-2: #a5b2cb;
+  --sneak-text-3: #7e8ba6;
+  --sneak-accent: #00e5ff;
 
-  /* Brand accent — the ONLY chromatic colour allowed on the site.
-     One ramp, so blue can never drift into five different hex values. */
-  --brand: #38bdf8;
-  --brand-strong: #0ea5e9;
-  --brand-deep: #0369a1;
-  --brand-soft: rgba(56, 189, 248, 0.14);
-  --brand-line: rgba(56, 189, 248, 0.28);
-  --brand-glow: rgba(56, 189, 248, 0.22);
-  /* Legacy alias, remapped to the controlled glow (was rgba(150,200,240,.35)) */
-  --sneak-glow: var(--brand-glow);
+  /* Brand colors */
+  --brand: #00e5ff;
+  --brand-neon: #1677ff;
+  --brand-strong: #00c8e6;
+  --brand-deep: #0b1230;
+  --brand-soft: rgba(0, 229, 255, 0.12);
+  --brand-line: rgba(140, 190, 255, 0.22);
+  --brand-glow: rgba(0, 229, 255, 0.25);
+  --brand-lavender: #a5a9ff;
 
-  /* Single glass recipe (was 5 variants across 3 blur radii) */
-  --glass-bg: rgba(12, 16, 22, 0.72);
-  --glass-bg-strong: rgba(10, 14, 19, 0.86);
-  --glass-border: rgba(255, 255, 255, 0.09);
-  --glass-blur: 14px;
+  /* Glass recipe */
+  --glass-bg: rgba(255, 255, 255, 0.045);
+  --glass-bg-strong: rgba(7, 11, 24, 0.78);
+  --glass-border: rgba(140, 190, 255, 0.17);
+  --glass-blur: 16px;
+}
+
+/* Font family shortcuts */
+.font-display {
+  font-family: var(--font-sora), system-ui, sans-serif;
+  letter-spacing: -0.025em;
 }
 
 /* ===== Global layout ===== */
@@ -210,17 +215,14 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ===== Page backgrounds =====
-   One neutral vertical ramp for the whole document. Previously hero, canvas,
-   features and outer each carried their own near-black, which produced
-   visible horizontal seams between sections. */
+/* ===== Page backgrounds ===== */
 .sneak-outer {
   overflow-x: clip;
   background: var(--sneak-bg);
 }
 
 .sneak-canvas {
-  background: linear-gradient(180deg, var(--sneak-bg-2) 0%, var(--sneak-bg) 45%, var(--sneak-bg) 100%);
+  background: linear-gradient(180deg, var(--sneak-bg) 0%, var(--sneak-bg-2) 35%, var(--sneak-bg-3) 70%, var(--sneak-bg) 100%);
 }
 
 /* ===== Glass card — single recipe ===== */
@@ -229,6 +231,14 @@ html {
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+
+.sneak-glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 /* Respect motion preferences */
@@ -424,9 +434,96 @@ html {
     padding: 0.9rem 1.25rem;
     border: 1px solid var(--sneak-border);
     border-radius: 1rem;
-    background: rgba(8, 11, 15, 0.62);
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
+    background: rgba(7, 11, 24, 0.72);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
     width: fit-content;
   }
 }
+
+/* ===== Cinematic Utility Styles ===== */
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #00e5ff 0%, #1677ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-silver {
+  background: linear-gradient(180deg, #f7faff 0%, #a5b2cb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-lavender {
+  background: linear-gradient(135deg, #f7faff 0%, #a5a9ff 60%, #00e5ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Cinematic Cyan Glow & Light Beams */
+.ambient-glow-cyan {
+  background: radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.12) 0%, rgba(22, 119, 255, 0.05) 45%, transparent 70%);
+}
+
+.ambient-glow-navy {
+  background: radial-gradient(circle at 50% 50%, rgba(11, 18, 48, 0.9) 0%, rgba(7, 11, 24, 0.5) 50%, transparent 80%);
+}
+
+/* Holographic Card Effects */
+.holo-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(7, 11, 24, 0.8) 100%);
+  border: 1px solid rgba(140, 190, 255, 0.2);
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.9), 0 0 30px -10px rgba(0, 229, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.holo-panel-active {
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.08) 0%, rgba(7, 11, 24, 0.88) 100%);
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.9), 0 0 35px -5px rgba(0, 229, 255, 0.25), inset 0 1px 0 rgba(0, 229, 255, 0.3);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* Subtle laser / traveling beam */
+@keyframes laserSweep {
+  0% { transform: translateX(-100%); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateX(200%); opacity: 0; }
+}
+
+.laser-beam {
+  animation: laserSweep 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.04); }
+}
+
+.anim-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #03050c;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(140, 190, 255, 0.22);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 229, 255, 0.6);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(140, 190, 255, 0.22) #03050c;
+}
+
+
